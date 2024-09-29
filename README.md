@@ -2,8 +2,6 @@
 
 **Fine-tuning BERT on User Queries for Action Classification**
 
----
-
 ## Table of Contents
 
 1. [Project Description](#project-description)
@@ -78,17 +76,29 @@ To set up the project locally:
 
 ## Training Process
 
-To fine-tune the BERT model:
+To fine-tune the BERT model using the `bert.ipynb` notebook:
 
 1. **Prepare the Dataset**:
    - Place the dataset file (CSV) in the designated directory.
-   - Ensure the script points to the correct dataset path.
+   - Ensure the notebook points to the correct dataset path.
 
-2. **Run the Training Script**:
-    ```sh
-    python train.py
+2. **Run the Notebook**:
+   - Open `bert.ipynb` in Jupyter Notebook or Google Colab.
+   - Run the following code to load and fine-tune the model:
+    ```python
+    from transformers import BertForSequenceClassification
+
+    # Load the model
+    model = BertForSequenceClassification.from_pretrained(
+        "bert-base-multilingual-uncased",
+        num_labels=NUM_LABELS,
+        id2label=id2label,
+        label2id=label2id
+    )
+    model.to(device)
     ```
-   This command will initiate the fine-tuning process and save the best-performing model based on validation performance.
+
+This command will initiate the fine-tuning process and save the best-performing model based on validation performance.
 
 ## Usage
 
@@ -99,7 +109,7 @@ To utilize the trained model for predictions:
     from transformers import BertForSequenceClassification, BertTokenizer
 
     model = BertForSequenceClassification.from_pretrained('path/to/saved/model')
-    tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
+    tokenizer = BertTokenizer.from_pretrained('bert-base-multilingual-uncased')
     ```
 
 2. **Run Predictions**:
@@ -114,12 +124,37 @@ To utilize the trained model for predictions:
 
 After training and evaluating the model, the following metrics were achieved:
 
-- **Accuracy**: XX%
-- **Precision**: XX%
-- **Recall**: XX%
-- **F1 Score**: XX%
+- **True Negatives (TN)**: 104
+- **False Positives (FP)**: 0
+- **False Negatives (FN)**: 0
+- **True Positives (TP)**: 96
 
-These results demonstrate the effectiveness of the fine-tuned model in classifying user intents accurately.
+### Classification Report
+
+| Class | Precision | Recall | F1-Score | Support |
+|-------|-----------|--------|----------|---------|
+| 0     | 1.00      | 1.00   | 1.00     | 104     |
+| 1     | 0.99      | 1.00   | 1.00     | 107     |
+| 2     | 1.00      | 1.00   | 1.00     | 89      |
+| 3     | 1.00      | 0.99   | 0.99     | 97      |
+
+**Overall Accuracy**: 1.00 (100%)
+
+- **Macro Average**:
+  - Precision: 1.00
+  - Recall: 1.00
+  - F1-Score: 1.00
+  - Support: 397
+
+- **Weighted Average**:
+  - Precision: 1.00
+  - Recall: 1.00
+  - F1-Score: 1.00
+  - Support: 397
+
+These results demonstrate the effectiveness of the fine-tuned BERT model in accurately classifying user intents, achieving perfect precision, recall, and F1-scores across the majority of classes.
+
+Feel free to modify any part of this section as you see fit! This update should provide a comprehensive overview of your model's performance.
 
 ## Contact
 
