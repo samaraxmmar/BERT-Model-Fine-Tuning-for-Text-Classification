@@ -1,92 +1,129 @@
+# BERT Model Fine-Tuning for Text Classification
 
-# Nom du Projet
-
-**Conception et développement d’un chatbot transactionnel intelligent**
-
----
-
-## Table des matières
-
-1. [Description du Projet](#description-du-projet)
-2. [Fonctionnalités](#fonctionnalités)
-3. [Technologies Utilisées](#technologies-utilisées)
-4. [Installation](#installation)
-5. [Utilisation](#utilisation)
-6. [Architecture du Projet](#architecture-du-projet)
-7. [Contributeurs](#contributeurs)
-8. [Contact](#contact)
+**Fine-tuning BERT on User Queries for Action Classification**
 
 ---
 
-## Description du Projet
+## Table of Contents
 
-Ce projet vise à concevoir et développer un chatbot transactionnel intelligent pour une application bancaire. L'objectif est de fournir une solution automatisée qui puisse interagir avec les utilisateurs et répondre à leurs demandes, telles que la consultation de soldes ou l'exécution de virements. Le modèle de traitement du langage naturel est basé sur **BERT**, afin d'assurer une compréhension précise des demandes des utilisateurs.
+1. [Project Description](#project-description)
+2. [Dataset](#dataset)
+3. [Features](#features)
+4. [Technologies Used](#technologies-used)
+5. [Installation](#installation)
+6. [Training Process](#training-process)
+7. [Usage](#usage)
+8. [Results](#results)
+9. [Contact](#contact)
 
-## Fonctionnalités
+---
 
-- **Consulter le Solde** : Demandez votre solde en utilisant des phrases naturelles.
-- **Virement Mandat** : Réalisez un virement mandat simplement en donnant la commande au chatbot.
-- **Consulter CCP** : Vérifiez les informations sur votre compte CCP.
-- **Virement CCP** : Effectuez un virement à partir de votre compte CCP.
+## Project Description
 
-## Technologies Utilisées
+This project involves fine-tuning the BERT (Bidirectional Encoder Representations from Transformers) model on a custom dataset designed for text classification tasks. The objective is to classify user queries into predefined actions, such as checking balance or making transfers, thereby enabling an automated response system for banking or finance applications.
 
-- **Python** : Pour la logique du projet.
-- **BERT** : Modèle de traitement du langage naturel pour le chatbot.
-- **FastAPI** : Pour la création de l'API de backend.
-- **React** : Pour l'interface utilisateur.
-- **Ollama** : Pour déployer le modèle LLM.
-- **Docker** : Pour containeriser l'application et faciliter le déploiement.
+## Dataset
+
+The dataset consists of user queries paired with their respective actions. Each entry contains:
+
+- **Text**: The user's query (e.g., "Peux-tu m'indiquer le solde actuel de mon compte").
+- **Action**: The corresponding action category (e.g., "consulter solde").
+
+### Sample Data
+
+| Text Action | User Query |
+| --- | --- |
+| consulter solde | Peux-tu m'indiquer le solde actuel de mon compte |
+| consulter solde | Donne-moi une mise à jour de mon compte |
+| consulter solde | Affiche le montant actuel de mon compte |
+| virement ccp | Envoyer des fonds depuis mon CCP pour des frais |
+| virement ccp | Faire un transfert pour des frais de mise à jour |
+
+**Note**: The dataset is structured to facilitate the classification of various user intents, which is crucial for developing an effective conversational agent.
+
+## Features
+
+- **Text Preprocessing**: Implementations for cleaning and tokenizing the text.
+- **BERT Fine-Tuning**: Adjusts a pre-trained BERT model on the custom dataset for text classification.
+- **Evaluation Metrics**: Calculates accuracy, precision, recall, and F1 score to assess model performance.
+- **Model Persistence**: Saves the trained model for future predictions.
+
+## Technologies Used
+
+- **Python**: Programming language used for implementation.
+- **PyTorch**: Framework utilized for deep learning.
+- **Transformers**: Hugging Face's library for NLP models, particularly BERT.
+- **CUDA**: For accelerated training on compatible GPUs.
+- **Pandas and NumPy**: For data manipulation and preprocessing.
 
 ## Installation
 
-Pour cloner et exécuter ce projet localement, suis ces étapes :
+To set up the project locally:
 
-1. Clonez le dépôt GitHub :
+1. Clone the repository:
     ```sh
-    git clone https://github.com/ton-utilisateur/ton-projet.git
+    git clone https://github.com/your-username/bert-finetuning-text-classification.git
     ```
-2. Naviguez dans le répertoire du projet :
+2. Navigate to the project directory:
     ```sh
-    cd ton-projet
+    cd bert-finetuning-text-classification
     ```
-3. Installez les dépendances Python dans un environnement virtuel :
+3. Install the required dependencies:
     ```sh
     python -m venv .venv
-    source .venv/bin/activate  # Linux/macOS
-    .venv\Scripts\activate     # Windows
+    source .venv/bin/activate  # For Linux/macOS
+    .venv\Scripts\activate     # For Windows
     pip install -r requirements.txt
     ```
 
-## Utilisation
+## Training Process
 
-Pour lancer le projet localement :
+To fine-tune the BERT model:
 
-1. Démarrez l'API FastAPI :
+1. **Prepare the Dataset**:
+   - Place the dataset file (CSV) in the designated directory.
+   - Ensure the script points to the correct dataset path.
+
+2. **Run the Training Script**:
     ```sh
-    uvicorn server.main:app --reload
+    python train.py
     ```
-2. Naviguez vers l'interface React :
-    ```sh
-    cd client
-    npm start
+   This command will initiate the fine-tuning process and save the best-performing model based on validation performance.
+
+## Usage
+
+To utilize the trained model for predictions:
+
+1. **Load the Fine-Tuned Model**:
+    ```python
+    from transformers import BertForSequenceClassification, BertTokenizer
+
+    model = BertForSequenceClassification.from_pretrained('path/to/saved/model')
+    tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
     ```
-3. Accédez à l'application à l'adresse `http://localhost:3000`.
 
-## Architecture du Projet
+2. **Run Predictions**:
+    ```python
+    user_query = "Peux-tu vérifier combien il me reste actuellement?"
+    inputs = tokenizer(user_query, return_tensors='pt')
+    outputs = model(**inputs)
+    predicted_action = outputs.logits.argmax(dim=-1)
+    ```
 
-- **Dossier `server/`** : Contient le code backend, y compris les modèles et l'API FastAPI.
-- **Dossier `client/`** : Inclut l'interface utilisateur construite avec React.
-- **Dossier `models/`** : Contient les modèles pré-entraînés et ceux finement ajustés.
-- **`Dockerfile`** : Pour la création d'images Docker du projet.
-- **`requirements.txt`** : Liste des dépendances nécessaires.
+## Results
 
-## Contributeurs
+After training and evaluating the model, the following metrics were achieved:
 
-- **Samar Ammar** - [Profil GitHub]([https://github.com/ton-utilisateur](https://github.com/samaraxmmar))
+- **Accuracy**: XX%
+- **Precision**: XX%
+- **Recall**: XX%
+- **F1 Score**: XX%
+
+These results demonstrate the effectiveness of the fine-tuned model in classifying user intents accurately.
 
 ## Contact
 
-Pour toute question ou suggestion, n'hésitez pas à me contacter :
+For questions or collaboration opportunities:
 
-- **Email** : [samarammar070@gmail.com)
+- **Name**: Samar Ammar
+- **Email**: (samarammar070@gmail.com)
