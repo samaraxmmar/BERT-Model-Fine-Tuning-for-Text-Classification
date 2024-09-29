@@ -60,7 +60,7 @@ To set up the project locally:
 
 1. Clone the repository:
     ```sh
-    git clone [https://github.com/your-username/bert-finetuning-text-classification.git](https://github.com/samaraxmmar/BERT-Model-Fine-Tuning-for-Text-Classification.git)
+    git clone https://github.com/samaraxmmar/BERT-Model-Fine-Tuning-for-Text-Classification.git
     ```
 2. Navigate to the project directory:
     ```sh
