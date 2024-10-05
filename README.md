@@ -1,4 +1,4 @@
-# BERT Model Fine-Tuning for Text Classification
+# Finetuining LLM
 
 **Fine-tuning BERT on User Queries for Action Classification**
 
