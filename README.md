@@ -49,7 +49,7 @@ This structured dataset is key to training a model that can accurately understan
 ## 🚀 Technologies Used
 
 <p align="center">
-  <img src="https://miro.medium.com/v2/resize:fit:1008/1*u-wQ1yuhF45-fdqvk1khXA.png" alt="Technologies" width="600"/>
+  <img src="https://www.researchgate.net/publication/355061291/figure/fig1/AS:1076341826957313@1633631297211/Our-two-stage-fine-tuning-approach-a-at-first-on-the-external-dataset-eg-movie.ppm" alt="Technologies" width="600"/>
 </p>
 
 -   **Python**: The core programming language for the project.
