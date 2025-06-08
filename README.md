@@ -49,7 +49,7 @@ This structured dataset is key to training a model that can accurately understan
 ## 🚀 Technologies Used
 
 <p align="center">
-  <img src="https://i.imgur.com/t4J2T1h.png" alt="Technologies" width="600"/>
+  <img src="https://miro.medium.com/v2/resize:fit:1008/1*u-wQ1yuhF45-fdqvk1khXA.png" alt="Technologies" width="600"/>
 </p>
 
 -   **Python**: The core programming language for the project.
@@ -89,7 +89,7 @@ To get the project up and running on your local machine, please follow these ste
 The fine-tuning process is managed through the `bert.ipynb` Jupyter Notebook.
 
 <p align="center">
-  <img src="https://i.imgur.com/3iGj2yK.gif" alt="Training Process" width="600"/>
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6Olxr7MysWrf3-WAPfnw8FtHcnuKo9YfSFw&s" alt="Training Process" width="600"/>
 </p>
 
 1.  **Prepare Your Dataset**:
