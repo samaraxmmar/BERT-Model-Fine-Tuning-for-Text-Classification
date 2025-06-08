@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://static.vecteezy.com/ti/vecteur-libre/t2/21495252-banniere-de-technologie-numerique-concept-d-arriere-plan-bleu-vert-effet-de-lumiere-de-cyber-technologie-technologie-abstraite-donnees-futures-d-innovation-reseau-internet-donnees-ai-big-connexion-de-points-de-lignes-vecteur-d-illustration-vectoriel.jpg" alt="Project Banner" width="800"/>
+  <img src="[https://static.vecteezy.com/ti/vecteur-libre/t2/21495252-banniere-de-technologie-numerique-concept-d-arriere-plan-bleu-vert-effet-de-lumiere-de-cyber-technologie-technologie-abstraite-donnees-futures-d-innovation-reseau-internet-donnees-ai-big-connexion-de-points-de-lignes-vecteur-d-illustration-vectoriel.jpg](https://img.freepik.com/vecteurs-premium/fond-abstrait-geometrique-connecte-points-lignes-connexion-contexte-technologique_322958-3166.jpg)" alt="Project Banner" width="800"/>
 </p>
 
 <h1 align="center">Fine-tuning BERT for Action Classification</h1>
