@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://i.imgur.com/8a5g6Z0.png" alt="Project Banner" width="800"/>
+  <img src="https://static.vecteezy.com/ti/vecteur-libre/t2/21495252-banniere-de-technologie-numerique-concept-d-arriere-plan-bleu-vert-effet-de-lumiere-de-cyber-technologie-technologie-abstraite-donnees-futures-d-innovation-reseau-internet-donnees-ai-big-connexion-de-points-de-lignes-vecteur-d-illustration-vectoriel.jpg" alt="Project Banner" width="800"/>
 </p>
 
 <h1 align="center">Fine-tuning BERT for Action Classification</h1>
