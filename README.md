@@ -1,164 +1,182 @@
-# Finetuining LLM
+<p align="center">
+  <img src="https://i.imgur.com/8a5g6Z0.png" alt="Project Banner" width="800"/>
+</p>
 
-**Fine-tuning BERT on User Queries for Action Classification**
+<h1 align="center">Fine-tuning BERT for Action Classification</h1>
 
-## Table of Contents
-
-1. [Project Description](#project-description)
-2. [Dataset](#dataset)
-3. [Features](#features)
-4. [Technologies Used](#technologies-used)
-5. [Installation](#installation)
-6. [Training Process](#training-process)
-7. [Usage](#usage)
-8. [Results](#results)
-9. [Contact](#contact)
+<p align="center">
+  <a href="https://www.python.org/downloads/release/python-390/"><img src="https://img.shields.io/badge/Python-3.9%2B-blue.svg" alt="Python Version"></a>
+  <a href="https://pytorch.org/get-started/locally/"><img src="https://img.shields.io/badge/PyTorch-2.0%2B-orange.svg" alt="PyTorch Version"></a>
+  <a href="https://huggingface.co/docs/transformers/index"><img src="https://img.shields.io/badge/Transformers-4.3%2B-yellow.svg" alt="Transformers Version"></a>
+  <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License"></a>
+</p>
 
 ---
 
-## Project Description
+## 🎯 Project Description
 
-This project involves fine-tuning the BERT (Bidirectional Encoder Representations from Transformers) model on a custom dataset designed for text classification tasks. The objective is to classify user queries into predefined actions, such as checking balance or making transfers, thereby enabling an automated response system for banking or finance applications.
+This project demonstrates the fine-tuning of a pre-trained **BERT (Bidirectional Encoder Representations from Transformers)** model for a text classification task. The primary goal is to classify user queries from a banking or financial context into predefined actions, such as checking an account balance or initiating a transfer. This enables the development of a sophisticated and automated response system, enhancing user interaction with financial applications.
 
-## Dataset
+---
 
-The dataset consists of user queries paired with their respective actions. Each entry contains:
+## 🗂️ Dataset
 
-- **Text**: The user's query (e.g., "Peux-tu m'indiquer le solde actuel de mon compte").
-- **Action**: The corresponding action category (e.g., "consulter solde").
+The model is trained on a custom dataset of user queries paired with their corresponding actions. Each entry in the dataset includes the user's query text and the action it represents.
 
 ### Sample Data
 
 | Text Action | User Query |
-| --- | --- |
-| consulter solde | Peux-tu m'indiquer le solde actuel de mon compte |
-| consulter solde | Donne-moi une mise à jour de mon compte |
-| consulter solde | Affiche le montant actuel de mon compte |
-| virement ccp | Envoyer des fonds depuis mon CCP pour des frais |
-| virement ccp | Faire un transfert pour des frais de mise à jour |
+| :--- | :--- |
+| `consulter solde` | "Peux-tu m'indiquer le solde actuel de mon compte" |
+| `consulter solde` | "Donne-moi une mise à jour de mon compte" |
+| `consulter solde` | "Affiche le montant actuel de mon compte" |
+| `virement ccp` | "Envoyer des fonds depuis mon CCP pour des frais" |
+| `virement ccp` | "Faire un transfert pour des frais de mise à jour" |
 
-**Note**: The dataset is structured to facilitate the classification of various user intents, which is crucial for developing an effective conversational agent.
+This structured dataset is key to training a model that can accurately understand and categorize a wide range of user intents, which is a critical component for building an effective conversational agent.
 
-## Features
+---
 
-- **Text Preprocessing**: Implementations for cleaning and tokenizing the text.
-- **BERT Fine-Tuning**: Adjusts a pre-trained BERT model on the custom dataset for text classification.
-- **Evaluation Metrics**: Calculates accuracy, precision, recall, and F1 score to assess model performance.
-- **Model Persistence**: Saves the trained model for future predictions.
+## ✨ Features
 
-## Technologies Used
+-   **Text Preprocessing**: Includes scripts for cleaning, normalizing, and tokenizing text data to prepare it for the BERT model.
+-   **BERT Fine-Tuning**: Leverages a pre-trained multilingual BERT model and fine-tunes it on the specific task of action classification.
+-   **Performance Evaluation**: Implements standard evaluation metrics such as Accuracy, Precision, Recall, and F1-score to rigorously assess the model's performance.
+-   **Model Persistence**: The trained model is saved, allowing for easy integration into other applications for real-time inference.
 
-- **Python**: Programming language used for implementation.
-- **PyTorch**: Framework utilized for deep learning.
-- **Transformers**: Hugging Face's library for NLP models, particularly BERT.
-- **CUDA**: For accelerated training on compatible GPUs.
-- **Pandas and NumPy**: For data manipulation and preprocessing.
+---
 
-## Installation
+## 🚀 Technologies Used
 
-To set up the project locally:
+<p align="center">
+  <img src="https://i.imgur.com/t4J2T1h.png" alt="Technologies" width="600"/>
+</p>
 
-1. Clone the repository:
+-   **Python**: The core programming language for the project.
+-   **PyTorch**: A powerful deep learning framework used for building and training the model.
+-   **Hugging Face Transformers**: Provides the pre-trained BERT model and the necessary tools for fine-tuning.
+-   **CUDA**: Utilized for GPU acceleration to speed up the training process.
+-   **Pandas & NumPy**: Essential libraries for data manipulation and numerical operations.
+
+---
+
+## 🛠️ Installation
+
+To get the project up and running on your local machine, please follow these steps:
+
+1.  **Clone the Repository**
     ```sh
-    git clone https://github.com/samaraxmmar/BERT-Model-Fine-Tuning-for-Text-Classification.git
+    git clone [https://github.com/samaraxmmar/BERT-Model-Fine-Tuning-for-Text-Classification.git](https://github.com/samaraxmmar/BERT-Model-Fine-Tuning-for-Text-Classification.git)
     ```
-2. Navigate to the project directory:
+2.  **Navigate to the Project Directory**
     ```sh
-    cd bert-finetuning-text-classification
+    cd BERT-Model-Fine-Tuning-for-Text-Classification
     ```
-3. Install the required dependencies:
+3.  **Set Up a Virtual Environment and Install Dependencies**
     ```sh
     python -m venv .venv
-    source .venv/bin/activate  # For Linux/macOS
-    .venv\Scripts\activate     # For Windows
+    # On Linux/macOS
+    source .venv/bin/activate
+    # On Windows
+    .venv\Scripts\activate
     pip install -r requirements.txt
     ```
 
-## Training Process
+---
 
-To fine-tune the BERT model using the `bert.ipynb` notebook:
+## 🧠 Training Process
 
-1. **Prepare the Dataset**:
-   - Place the dataset file (CSV) in the designated directory.
-   - Ensure the notebook points to the correct dataset path.
+The fine-tuning process is managed through the `bert.ipynb` Jupyter Notebook.
 
-2. **Run the Notebook**:
-   - Open `bert.ipynb` in Jupyter Notebook or Google Colab.
-   - Run the following code to load and fine-tune the model:
-    ```python
-    from transformers import BertForSequenceClassification
+<p align="center">
+  <img src="https://i.imgur.com/3iGj2yK.gif" alt="Training Process" width="600"/>
+</p>
 
-    # Load the model
-    model = BertForSequenceClassification.from_pretrained(
-        "bert-base-multilingual-uncased",
-        num_labels=NUM_LABELS,
-        id2label=id2label,
-        label2id=label2id
-    )
-    model.to(device)
-    ```
+1.  **Prepare Your Dataset**:
+    -   Place your training data (in CSV format) into the project's data directory.
+    -   Update the file path in the notebook to point to your dataset.
 
-This command will initiate the fine-tuning process and save the best-performing model based on validation performance.
+2.  **Execute the Notebook**:
+    -   Open `bert.ipynb` in Jupyter Notebook or Google Colab.
+    -   Run the cells sequentially to load the data, preprocess it, and initiate the training loop. The following snippet loads the pre-trained BERT model for sequence classification:
+        ```python
+        from transformers import BertForSequenceClassification
 
-## Usage
+        # Load the model with the specified number of labels
+        model = BertForSequenceClassification.from_pretrained(
+            "bert-base-multilingual-uncased",
+            num_labels=NUM_LABELS,
+            id2label=id2label,
+            label2id=label2id
+        )
+        model.to(device)
+        ```
+    The notebook will handle the training and save the model with the best performance on the validation set.
 
-To utilize the trained model for predictions:
+---
 
-1. **Load the Fine-Tuned Model**:
+## ⚙️ Usage
+
+Once the model is trained and saved, you can easily use it for inference on new user queries.
+
+1.  **Load the Fine-Tuned Model and Tokenizer**:
     ```python
     from transformers import BertForSequenceClassification, BertTokenizer
 
-    model = BertForSequenceClassification.from_pretrained('path/to/saved/model')
+    model_path = 'path/to/your/saved/model'
+    model = BertForSequenceClassification.from_pretrained(model_path)
     tokenizer = BertTokenizer.from_pretrained('bert-base-multilingual-uncased')
     ```
 
-2. **Run Predictions**:
+2.  **Make Predictions**:
     ```python
     user_query = "Peux-tu vérifier combien il me reste actuellement?"
-    inputs = tokenizer(user_query, return_tensors='pt')
+    inputs = tokenizer(user_query, return_tensors='pt', padding=True, truncation=True)
+
+    # Get model outputs
     outputs = model(**inputs)
-    predicted_action = outputs.logits.argmax(dim=-1)
+
+    # Get the predicted class
+    predicted_action_id = outputs.logits.argmax(dim=-1).item()
+    predicted_action = model.config.id2label[predicted_action_id]
+
+    print(f"Predicted Action: {predicted_action}")
     ```
 
-## Results
+---
 
-After training and evaluating the model, the following metrics were achieved:
+## 📊 Results
 
-- **True Negatives (TN)**: 104
-- **False Positives (FP)**: 0
-- **False Negatives (FN)**: 0
-- **True Positives (TP)**: 96
+The fine-tuned model achieved exceptional performance on the test set, demonstrating its effectiveness in classifying user intents with high accuracy.
 
-### Classification Report
+<p align="center">
+  <img src="https://i.imgur.com/O6Yv8gQ.png" alt="Confusion Matrix" width="500"/>
+</p>
+
+### **Classification Report**
 
 | Class | Precision | Recall | F1-Score | Support |
-|-------|-----------|--------|----------|---------|
-| 0     | 1.00      | 1.00   | 1.00     | 104     |
-| 1     | 0.99      | 1.00   | 1.00     | 107     |
-| 2     | 1.00      | 1.00   | 1.00     | 89      |
-| 3     | 1.00      | 0.99   | 0.99     | 97      |
+| :---: | :---: | :---: | :---: | :---: |
+|   0   | 1.00  | 1.00  | 1.00  |  104  |
+|   1   | 0.99  | 1.00  | 1.00  |  107  |
+|   2   | 1.00  | 1.00  | 1.00  |   89  |
+|   3   | 1.00  | 0.99  | 0.99  |   97  |
 
-**Overall Accuracy**: 1.00 (100%)
+### **Overall Metrics**
 
-- **Macro Average**:
-  - Precision: 1.00
-  - Recall: 1.00
-  - F1-Score: 1.00
-  - Support: 397
+-   **Accuracy**: **100%**
+-   **Macro Average F1-Score**: **1.00**
+-   **Weighted Average F1-Score**: **1.00**
 
-- **Weighted Average**:
-  - Precision: 1.00
-  - Recall: 1.00
-  - F1-Score: 1.00
-  - Support: 397
+These outstanding results confirm that the fine-tuned BERT model can serve as a highly reliable component in a customer service or financial chatbot application.
 
-These results demonstrate the effectiveness of the fine-tuned BERT model in accurately classifying user intents, achieving perfect precision, recall, and F1-scores across the majority of classes.
+---
 
-Feel free to modify any part of this section as you see fit! This update should provide a comprehensive overview of your model's performance.
+## 📫 Contact
 
-## Contact
+For any questions, feedback, or collaboration opportunities, please feel free to reach out:
 
-For questions or collaboration opportunities:
+**Samar Ammar**
 
-- **Name**: Samar Ammar
-- **Email**: (samarammar070@gmail.com)
+-   **Email**: `samarammar070@gmail.com`
+-   **GitHub**: [samaraxmmar](https://github.com/samaraxmmar)
